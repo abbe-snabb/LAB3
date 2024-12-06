@@ -1,0 +1,126 @@
+
+PARAMS:
+    dqn2 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.03)  
+            self.dropout2 = nn.Dropout(0.03)
+
+    buffer_size=125000, batch_size=40, lr=0.0001, eps_min=0.06, tau=0.99, lam=0.005, gamma=0.98
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+    dqn3 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.06)  
+            self.dropout2 = nn.Dropout(0.06)
+
+    buffer_size=105000, batch_size=40, lr=0.0002, eps_min=0.06, tau=0.99, lam=0.01, gamma=0.97
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+    dqn4 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.04)  
+            self.dropout2 = nn.Dropout(0.04)
+
+    buffer_size=125000, batch_size=40, lr=0.00015, eps_min=0.05, tau=0.99, lam=0.008, gamma=0.975
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+    dqn5 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.04)  
+            self.dropout2 = nn.Dropout(0.04)
+
+    buffer_size=130000, batch_size=48, lr=0.00015, eps_min=0.05, tau=0.988, lam=0.01, gamma=0.99
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+    dqn6 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.04)  
+            self.dropout2 = nn.Dropout(0.04)
+
+    buffer_size=70000, batch_size=48, lr=0.00015, eps_min=0.05, tau=0.988, lam=0.01, gamma=0.99
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+    dqn7 params:
+            self.conv1 = nn.Conv2d(1, 32, kernel_size=3, stride=1, padding=1) 
+            self.conv2 = nn.Conv2d(32, 48, kernel_size=3, stride=1, padding=1)
+            self.conv3 = nn.Conv2d(48, 96, kernel_size=3, stride=1, padding=1)
+            self.fc1 = nn.Linear(96 * 4 * 4, 192)
+            self.fc2 = nn.Linear(192, 6)
+
+            self.dropout1 = nn.Dropout(0.04)  
+            self.dropout2 = nn.Dropout(0.04)
+
+    buffer_size=90000, batch_size=64, lr=0.0003, eps_min=0.04, tau=0.988, lam=0.01, gamma=0.99
+
+    torch.nn.utils.clip_grad_norm_(self.qnet.parameters(), 1.5)
+
+
+EVAL:
+    dqn0 250 final:
+        5-21(Very overfitted and horrible at playing balls back and forth as long as it doesn't use the "optimal" first move...)
+
+    dqn1 350 best eval:
+        7-21 (Not too badly Overfitted but can play a couple of balls back and forth and then it loses.)
+
+    dqn1 350 eval:
+        2-21 (Overfitted to fire with left paddle)
+
+    dqn2 500 eval:
+        21-2 (Extremely good at predicting a fast ball, but cannot finish to win the point. Hasn't found the optimal move...)
+
+    dqn3 500 eval:
+        1-21 (Overfitted and cannot shoot balls back and forth good at all.)
+    
+    dqn4 500 eval:
+        0-21 (SUPER OVERFITTED, NO MORE INFO CAN BE CONCLUDED.)
+
+    dqn5 500 eval:
+        0-21 (Has found multiple optimal actions, and can play the ball back and forth pretty well.)
+
+    dqn6 500 eval:
+        v1: 0-21  (Similar to dqn5)
+        v2: 0-21  (Has found 2 optimal actions. Don't know if he can play ball back and forth.)
+        v3: 0-21  (Very overfitted, no more info can be cocluded.)
+    
+    dqn7 500 eval:
+        v1: 0-21 (Has found 2 optimal actions. Don't know if he can play ball back and forth.)
+        v2: 1-21 (Seems to suck at playing ball back and forth and is overfitted as well.)
+        v3: 21-11 (SUCKS)
+        
+    
+        
